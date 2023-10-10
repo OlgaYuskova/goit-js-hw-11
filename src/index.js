@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: 'https://pixabay.com/api/',
   params: {
     key: '39858338-ffd7e7633f3f70977c15ff106',
@@ -10,3 +10,5 @@ export const axiosInstance = axios.create({
     per_page: 40,
   },
 });
+
+export default axiosInstance;
