@@ -1,4 +1,4 @@
-import axios from './index';
+import axios from '/src/index';
 
 const refs = {
     form: document.querySelector(".search-form"),
@@ -47,9 +47,7 @@ async function searchImg(page = 1, q) {
       unhidenMoreBtn();
     } else {
       hidenMoreBtn();
-    //   Notiflix.Notify.info(
-    //     "We're sorry, but you've reached the end of search results."
-    //   );
+ 
     }
   } catch (error) {
     console.error(error);
