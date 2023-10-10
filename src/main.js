@@ -1,4 +1,4 @@
-import axios from './index.js';
+import axios from './index';
 
 const refs = {
     form: document.querySelector(".search-form"),
