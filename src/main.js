@@ -7,8 +7,9 @@ const refs = {
     buttonMore: document.querySelector(".btn-load-more")
 }
 const perPage = 40;
-let currentPage = 1; 
+let currentPage = 1;
 
+refs.buttonMore.addEventListener('click', onHandleLMBtnClick);
 refs.buttonMore.addEventListener("submit", onHandleSearchImg)
 
 function onHandleSearchImg(evt) {
@@ -26,7 +27,7 @@ async function searchImg(page = 1, q) {
     };
 
     const param = {
-    query: query,
+    query: q,
     page: page,
     };
     
@@ -42,6 +43,14 @@ async function searchImg(page = 1, q) {
     }
     if (page === 1) {
       console.log(`We found ${data.totalHits} images.`);
+        }
+    if (refs.gallery.childElementCount < data.totalHits) {
+      unhidenMoreBtn();
+    } else {
+      hidenMoreBtn();
+    //   Notiflix.Notify.info(
+    //     "We're sorry, but you've reached the end of search results."
+    //   );
     }
   } catch (error) {
     console.error(error);
@@ -69,8 +78,34 @@ function createMarkupImg(imgs) {
 
   refs.gallery.insertAdjacentHTML('beforeend', galleryConteiner);
 };
-  
 
+function scrollGallery() {
+  const { height: cardHeight } =
+    refs.gallery.lastElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
+}
+
+function onHandleLMBtnClick() {
+    const searchQuery = refs.form.searchQuery.value.trim();
+    if (searchQuery !== '') {
+        currentPage += 1;
+
+        searchImg(searchQuery, currentPage);
+        scrollGallery();
+    }
+}
+
+
+function unhidenMoreBtn() {
+  refs.buttonMore.style.display = 'block';
+}
+
+function hidenMoreBtn() {
+  refs.buttonMore.style.display = 'none';
+}
 
 
 
