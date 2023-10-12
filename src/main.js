@@ -46,7 +46,7 @@ function createMarkupImg(imgs) {
             <div class="info">
                 <p class="info-item"><b>Views:</b> ${img.views}</p>
                 <p class="info-item"><b>Likes:</b> ${img.likes}</p>
-                <p class "info-item"><b>Downloads:</b> ${img.downloads}</p>
+                <p class="info-item"><b>Downloads:</b> ${img.downloads}</p>
                 <p class="info-item"><b>Comments:</b> ${img.comments}</p>
             </div>
         </div>`
@@ -68,6 +68,7 @@ function onHandleSearchImg(evt) {
     const searchInputImg = refs.form.querySelector('input').value.trim();
     if (searchInputImg !== "") {
         searchImg(1, searchInputImg);
+        refs.form.querySelector('input').value = '';  // Очистити поле введення
     }
 }
 
@@ -87,11 +88,3 @@ function unhideMoreBtn() {
 function hideMoreBtn() {
     refs.buttonMore.style.display = 'none';
 }
-
-
-
-
-
-
-
-

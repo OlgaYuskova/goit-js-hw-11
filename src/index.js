@@ -15,6 +15,6 @@ export function getUser(page, q) {
       per_page: 10,
     };
     
-    return axios.get('', { params })
+    return axios.get('/', { params })
         .then((res) => res.data);
 }
